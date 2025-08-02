@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard - Centralized Auth Demo</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f9fc;
+        }
+        .navbar {
+            background-color: #2d3748;
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .navbar h1 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .logout {
+            padding: 0.5rem 1rem;
+            background-color: #e53e3e;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+        .logout:hover {
+            background-color: #c53030;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .card h2 {
+            color: #2d3748;
+            margin-top: 0;
+            font-size: 1.25rem;
+        }
+        .card p {
+            color: #718096;
+            margin-bottom: 0;
+        }
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            background-color: #4299e1;
+            color: white;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <h1>Admin Dashboard</h1>
+        <div class="user-info">
+            <span>Welcome, {{ username }}</span>
+            {% for group in groups %}
+            <span class="badge">{{ group }}</span>
+            {% endfor %}
+            <a href="/logout" class="logout">Logout</a>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <div class="dashboard-grid">
+            <div class="card">
+                <h2>User Management</h2>
+                <p>Manage user accounts, roles, and permissions</p>
+            </div>
+            <div class="card">
+                <h2>System Configuration</h2>
+                <p>Configure system settings and preferences</p>
+            </div>
+            <div class="card">
+                <h2>Security Settings</h2>
+                <p>Manage security policies and access controls</p>
+            </div>
+            <div class="card">
+                <h2>Analytics</h2>
+                <p>View system analytics and reports</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

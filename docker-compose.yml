@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  openldap:
+    image: osixia/openldap:1.5.0
+    container_name: openldap
+    environment:
+      LDAP_ORGANISATION: "Example Inc"
+      LDAP_DOMAIN: "example.org"
+      LDAP_BASE_DN: "dc=example,dc=org"
+      LDAP_ADMIN_PASSWORD: "admin"
+      LDAP_CONFIG_PASSWORD: "config"
+      LDAP_READONLY_USER: "false"
+      LDAP_READONLY_USER_USERNAME: "readonly"
+      LDAP_READONLY_USER_PASSWORD: "readonly"
+      LDAP_TLS: "false"
+      LDAP_REMOVE_CONFIG_AFTER_SETUP: "false"
+    ports:
+      - "1389:389"
+      - "1636:636"
+    volumes:
+      - ./ldap-seed.ldif:/container/service/slapd/assets/config/bootstrap/ldif/custom/ldap-seed.ldif
+    command: --copy-service --loglevel debug
+    networks:
+      - auth-network
+
+  app:
+    build: .
+    container_name: auth-app
+    environment:
+      LDAP_SERVER: "openldap"
+      LDAP_PORT: "389"
+      LDAP_BASE_DN: "dc=example,dc=org"
+      PYTHONUNBUFFERED: "1"
+    ports:
+      - "8080:8000"
+    volumes:
+      - .:/app
+    depends_on:
+      - openldap
+    networks:
+      - auth-network
+
+networks:
+  auth-network:
+    driver: bridge 

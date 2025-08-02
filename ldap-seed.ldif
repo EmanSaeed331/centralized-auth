@@ -1,0 +1,42 @@
+# Create organizational units
+dn: ou=groups,dc=example,dc=org
+objectClass: organizationalUnit
+ou: groups
+
+dn: ou=users,dc=example,dc=org
+objectClass: organizationalUnit
+ou: users
+
+# Create users first
+dn: cn=User1,ou=users,dc=example,dc=org
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+cn: User1
+sn: Admin
+uid: user1
+userPassword: password1
+mail: user1@example.org
+description: Administrator user (Group A)
+
+dn: cn=User2,ou=users,dc=example,dc=org
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+cn: User2
+sn: User
+uid: user2
+userPassword: password2
+mail: user2@example.org
+description: Regular user (Group B)
+
+# Create groups after users
+dn: cn=GroupA,ou=groups,dc=example,dc=org
+objectClass: groupOfNames
+cn: GroupA
+member: cn=User1,ou=users,dc=example,dc=org
+
+dn: cn=GroupB,ou=groups,dc=example,dc=org
+objectClass: groupOfNames
+cn: GroupB
+member: cn=User2,ou=users,dc=example,dc=org 
