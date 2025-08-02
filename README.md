@@ -83,7 +83,6 @@ docker-compose up --build
 4. **Navigate between dashboards:**
    - Admin users see administrative functions
    - Regular users see standard user interface
-   - Mixed permissions allow access to both
 
 5. **Logout:** Click the logout link to end your session
 
