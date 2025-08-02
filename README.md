@@ -77,9 +77,8 @@ docker-compose up --build
 2. **Open your browser and go to:** http://localhost:8080
 
 3. **Login with test users:**
-   - **alice/password123** → Access to Admin Dashboard
-   - **bob/password123** → Access to User Dashboard  
-   - **charlie/password123** → Access to Both Dashboards
+   - **user1/password1** → Access to Admin Dashboard
+   - **user2/password2** → Access to User Dashboard  
 
 4. **Navigate between dashboards:**
    - Admin users see administrative functions
@@ -129,7 +128,7 @@ docker-compose logs app
 ### Manual Testing
 1. Start application: `docker-compose up --build`
 2. Go to http://localhost:8080
-3. Try logging in with test users (alice, bob, charlie)
+3. Try logging in with test users (user1, user2)
 4. Verify proper dashboard access based on groups
 5. Test logout functionality
 
